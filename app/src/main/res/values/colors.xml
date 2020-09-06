@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFFFFF</color> <!--액션바(타이틀바)의 색상 결정-->
+    <color name="colorPrimaryDark">#FFFFFF</color> <!--상태바(시간 및 LTE보여주는 바)의 색상 결정-->
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorSplash">#FFFFCC00</color>
+    <color name="colorButton">#F0E8C8</color>
+    <color name="summer">#44eebd82</color>
+    <color name="fall">#44d8d27e</color>
+    <color name="winter">#44a1c1da</color>
+    <color name="spring">#448da64b</color>
+    <drawable name="greyed_out">#FFC107</drawable>
+    <color name="today">#CDDC39</color>
+    <color name="darkYellow">#FF9800</color>
+    <color name="tab">#FF434340</color>
+</resources>
