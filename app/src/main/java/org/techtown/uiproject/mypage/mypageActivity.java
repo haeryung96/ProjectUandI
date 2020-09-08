@@ -1,5 +1,8 @@
 package org.techtown.uiproject.mypage;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,6 +12,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+//네아로 연동
+import com.nhn.android.naverlogin.OAuthLogin;
+import com.nhn.android.naverlogin.OAuthLoginHandler;
+import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
+
+//카카오톡 연동
+import com.kakao.auth.AuthType;
+import com.kakao.auth.Session;
+import com.kakao.usermgmt.LoginButton;
+
 
 import org.techtown.uiproject.MainActivity;
 import org.techtown.uiproject.R;
@@ -24,6 +38,20 @@ public class mypageActivity extends AppCompatActivity {
     Cursor cursor;
     String TempPassword = "NOT_FOUND" ;
     public static final String UserEmail = "";
+
+    //네아로 연동 부분
+    public static OAuthLogin mOAuthLoginInstance;
+    public static OAuthLoginButton mOAuthLoginButton;
+
+    public static Context mContext;
+    private static String OAUTH_CLIENT_ID = "VK2nqfT5xr6i3_72M2IC";
+    private static String OAUTH_CLIENT_SECRET = "Na_BHeawcc";
+    private static String OAUTH_CLIENT_NAME = "네이버 아이디로 로그인";
+
+    //카카오톡 연동 부분
+    private LoginButton btn_login;
+    Session session;
+    private SessionCallback sessionCallback = new SessionCallback();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +88,16 @@ public class mypageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //네아로 연동 부분
+        mContext = mypageActivity.this;
+
+        mOAuthLoginInstance = OAuthLogin.getInstance();
+        mOAuthLoginInstance.showDevelopersLog(true);
+        mOAuthLoginInstance.init(mContext,OAUTH_CLIENT_ID,OAUTH_CLIENT_SECRET,OAUTH_CLIENT_NAME);
+
+        mOAuthLoginButton = (OAuthLoginButton) findViewById(R.id.button_naver);
+        mOAuthLoginButton.setOAuthLoginHandler(mOAuthLoginHandler);
 
     }
     //로그인 기능의 부분
@@ -133,5 +171,40 @@ public class mypageActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"이메일 혹은 비밀번호가 잘못 입력되었습니다. 다시 입력해주세요.",Toast.LENGTH_LONG).show();
         }
         TempPassword = "미가입입니다." ;
+    }
+
+    //네아로 연동 부분
+    static private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
+        @Override
+        public void run(boolean success) {
+            if(success){
+                String accessToken = mOAuthLoginInstance.getAccessToken(mContext);
+                String refreshToken = mOAuthLoginInstance.getRefreshToken(mContext);
+                long expiresAt = mOAuthLoginInstance.getExpiresAt(mContext);
+                String tokenType = mOAuthLoginInstance.getTokenType(mContext);
+            }else{
+                String errorDesc = mOAuthLoginInstance.getLastErrorDesc(mContext);
+                String errorCode = mOAuthLoginInstance.getLastErrorCode(mContext).getCode();
+                Toast.makeText(mContext,"errorcode:"+errorCode+",errorDesc:"+errorDesc,Toast.LENGTH_LONG);
+
+            }
+        }
+    };
+
+    //카카오톡 연동 부분
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // 세션 콜백 삭제
+        Session.getCurrentSession().removeCallback(sessionCallback);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        // 카카오톡|스토리 간편로그인 실행 결과를 받아서 SDK로 전달
+        if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
+            return;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
