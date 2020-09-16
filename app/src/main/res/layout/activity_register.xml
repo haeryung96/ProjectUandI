@@ -103,18 +103,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="핸드폰번호"
+            android:text="비밀번호 확인"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editMobile"
+            android:id="@+id/editPasswordCheck"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
-            android:hint="H.P 입력하세요."
-            android:inputType="phone"
+            android:hint="비밀번호를 확인하세요."
+            android:inputType="textPassword"
             android:textSize="20sp" />
     </LinearLayout>
 

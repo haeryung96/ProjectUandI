@@ -27,13 +27,13 @@ public class DashBoard extends AppCompatActivity {
         Intent intent = getIntent();
 
         // Receiving User Email Send By mypage.
-        EmailHolder = intent.getStringExtra(mypageActivity.UserEmail);
+        //EmailHolder = intent.getStringExtra(mypageActivity.UserEmail);
 
         // Setting up received email to TextView.
-        Email.setText(Email.getText().toString()+ EmailHolder);
+        //Email.setText(Email.getText().toString()+ EmailHolder);
 
         // Adding click listener to Log Out button.
-        LogOUT.setOnClickListener(new View.OnClickListener() {
+        /*LogOUT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -43,6 +43,6 @@ public class DashBoard extends AppCompatActivity {
                 Toast.makeText(DashBoard.this,"로그아웃 성공!", Toast.LENGTH_LONG).show();
 
             }
-        });
+        });*/
     }
 }
