@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_img_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".sensor.TemperatureActivity"></activity>
+        <activity android:name=".sensor.HumidityActivity" />
         <activity android:name=".mypage.mypageActivity" />
         <activity android:name=".mypage.Register" />
         <activity android:name=".mypage.DashBoard" />
