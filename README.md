@@ -28,4 +28,8 @@
 
 ![calender](https://user-images.githubusercontent.com/61223256/104095953-0a5c4000-52dd-11eb-9c07-8af64921c982.png)
 
+![sos](https://user-images.githubusercontent.com/61223256/104095969-206a0080-52dd-11eb-8314-b45ef898167d.png)
+
+![camera](https://user-images.githubusercontent.com/61223256/104095973-22cc5a80-52dd-11eb-8641-0df3af5c3324.png)
+
 
