@@ -22,3 +22,4 @@
  
 ● 사용자 인터페이스 (SW /모바일 어플리케이션)
 
+https://github.com/haeryung96/ProjectUandI/issues/1#issue-782631028
